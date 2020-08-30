@@ -31,8 +31,8 @@ def revealletters(lettersrevealed, tries, userword, theword):
 def display(win = False, lose = False):
     window.fill((255,255,255))
     window.blit(HANGER, (0,0))
-    text = font.render(' '.join(userword).center(58), 1, (0,0,0))
-    window.blit(text, (50, 440))
+    text = font.render(' '.join(userword), 1, (0, 0, 0))
+    window.blit(text, (WIDTH//2 - text.get_width()//2, 440))
     window.fill((0,0,0), rect = (0,420, WIDTH, 22))
     for i in letters:
         x,y,letter = i
@@ -65,33 +65,30 @@ font = pygame.font.SysFont('comicsans', 70)
 pygame.display.set_caption("Hangman, By: Arjun Sahlot")
 pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
 HANGER = pygame.transform.scale(pygame.image.load(os.path.join("assets", "hanger.png")), (250, 430))
-# A = pygame.image.load(os.path.join("assets", "a.png"))
 print("Before you start please answer the questions below.")
 default_letters_min = 7
 default_letters_max = 12
 default_letters_revealed = 0
-# defaultsettings = input(f"Do you want to use the default settings: {default_letters_min}-{default_letters_max} letters and {default_letters_revealed} revealed? ")
-# if defaultsettings.lower() == "y":
-#     letternum = random.randint(7,12)
-#     theword = random.choice(quizwords)
-#     while len(theword) != letternum:
-#         theword = random.choice(quizwords)
-#     userword = ['_' for x in range(len(theword))]
-#     lettersinword = len(set(theword))
-#     lettersrevealed = 0
-#     print("Your settings are the following:")
-#     print(f"{len(theword)} letters")
-#     print(f"{lettersrevealed} letters revealed")
-# else:
-    # letternum = int(input('How many letters should be in the word(max is 28)? '))
-letternum = 28
+defaultsettings = input(f"Do you want to use the default settings: {default_letters_min}-{default_letters_max} letters and {default_letters_revealed} revealed? ")
+if defaultsettings.lower() == "y":
+    letternum = random.randint(7,12)
+    theword = random.choice(quizwords)
+    while len(theword) != letternum:
+        theword = random.choice(quizwords)
+    userword = ['_' for x in range(len(theword))]
+    lettersinword = len(set(theword))
+    lettersrevealed = 0
+    print("Your settings are the following:")
+    print(f"{len(theword)} letters")
+    print(f"{lettersrevealed} letters revealed")
+else:
+    letternum = int(input('How many letters should be in the word(max is 28)? '))
+    lettersrevealed = int(input(f'How many letters do you want revealed(max is {lettersinword + 3})? ')) + 1
 theword = random.choice(quizwords)
 while len(theword) != letternum:
     theword = random.choice(quizwords)
 userword = ['_' for x in range(len(theword))]
 lettersinword = len(set(theword))
-# lettersrevealed = int(input(f'How many letters do you want revealed(max is {lettersinword + 3})? ')) + 1
-lettersrevealed = 0
 notguessedcollection = list('abcdefghijklmnopqrstuvwxyz')
 tries = 9
 revealletters(lettersrevealed, tries, userword, theword)
