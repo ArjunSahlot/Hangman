@@ -62,7 +62,7 @@ pygame.init()
 WIDTH, HEIGHT = 1200, 500
 window = pygame.display.set_mode((WIDTH,HEIGHT))
 font = pygame.font.SysFont('comicsans', 70)
-pygame.display.set_caption("Hangman, By: Arjun Sahlot")
+pygame.display.set_caption("Hangman")
 pygame.display.set_icon(pygame.image.load(os.path.join("assets", "icon.png")))
 HANGER = pygame.transform.scale(pygame.image.load(os.path.join("assets", "hanger.png")), (250, 430))
 print("Before you start please answer the questions below.")
